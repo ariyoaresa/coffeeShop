@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="signin.css" />
+    <title>Coffee Page Login</title>
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="header">Sign in</h2>
+        <a class="header" href="/index.html">Café La Défense</a>
+        <form id="signin-form">
+            <input type="email" placeholder="Email" name="email" required />
+            <input type="password" placeholder="Password" name="password" required />
+            <button type="submit" id="signin-button">Login</button>
+            <p><a href="forgotPswd.html">Forgot Password?</a></p>
+        </form>
+        <p>Don't have an account? <a href="signup.html">Sign up here</a></p>
+    </div>
+
+    <script>
+        document
+            .getElementById("signin-form")
+            .addEventListener("submit", function (e) {
+                e.preventDefault();
+
+                const email = document.querySelector('input[name="email"]').value;
+                const password = document.querySelector(
+                    'input[name="password"]'
+                ).value;
+
+                // Create a JSON payload with the login information
+                const loginData = {
+                    email: email,
+                    password: password
+                };
+
+                // Send a POST request to the User Management microservice's login endpoint
+                fetch("http://localhost:8082/api/v1/users/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(loginData),
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        // Handle the response from the microservice, e.g., show a success message or redirect to a new page.
+                        alert("Login successful:", data);
+                        // Check if the login email is 'pasindu@gmail.com'
+                        if (data.email === 'pasindu@gmail.com') {
+                            // Redirect to a different page
+                            window.location.href = '/adminCustomerManagement/adminDashboard.html';
+                        } else {
+                            // Redirect to the default index.html
+                            window.location.href = '/index.html';
+                        }
+                        // You can redirect the user to their profile page or perform other actions here.
+                        // Change button text and behavior
+                        const signinButton = document.getElementById("signin-button");
+                        signinButton.innerText = "Sign Out";
+                        signinButton.onclick = signOut;
+                    })
+                    .catch((error) => {
+                        // Handle errors, e.g., show an error message to the user.
+                        alert("Login failed:", error);
+                    });
+            });
+
+        // Function for the "Sign Out" behavior
+        function signOut() {
+            // Implement your sign-out logic here
+            alert("User signed out"); // Placeholder for sign-out action
+            // Change button text and behavior back to "Login"
+            const signinButton = document.getElementById("signin-button");
+            signinButton.innerText = "Login";
+            signinButton.onclick = function () {
+                // Implement your sign-in logic here
+                // This can be similar to your original sign-in functionality
+            };
+        }
+    </script>
+</body>
+
+</html>

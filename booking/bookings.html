@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation Management</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+
+</head>
+
+<body class="bg-gray-100 p-6">
+
+    <div class="max-w-5xl mx-auto bg-white rounded shadow-lg p-6">
+        <h1 class="text-2xl font-semibold mb-4">Reservation Management</h1>
+
+        <!-- Button to toggle the form -->
+        <button id="createReservationButton" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">Create
+            Reservation</button>
+
+        <!-- Add margin-top to create space -->
+        <div class="col" style="margin-top: 10px;">
+            <a href="/booking/updateBookings.html"
+                class="px-5 py-2 bg-green-600 text-white rounded hover:bg-green-600">Update Bookings</a>
+        </div>
+
+
+        <!-- Table to display existing reservations -->
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead>
+                <tr>
+                    <th class="px-4 py-2">ID</th>
+                    <th class="px-10 py-2">Customer Name</th>
+                    <th class="px-10 py-2">Date</th>
+                    <th class="px-8 py-2">Contact Number</th>
+                    <th class="px-14 py-2">Email</th>
+                    <th class="px-4 py-2">Description</th>
+                    <th class="px-4 py-2">Table Number</th>
+                    <th class="px-4 py-2">Status</th>
+                    <th class="px-4 py-2">Actions</th> <!-- Add a new header column for buttons -->
+                </tr>
+            </thead>
+            <tbody id="data-table">
+                <!-- Existing records will be displayed here -->
+            </tbody>
+        </table>
+
+        <!-- Form to create a new reservation -->
+        <div id="createReservationForm" style="display: none;">
+            <link rel="stylesheet" href="addNew.css">
+            <form class="form" autocomplete="on" onsubmit="submitForm(event)">
+                <label>
+                    <input required="" placeholder="" type="text" class="input" name="customerName" id="customerName">
+                    <span>Customer Name</span>
+                </label>
+                <label>
+                    <input required="" placeholder="YYYY-MM-DD" type="text" class="input" name="date" id="date">
+                    <span>Date</span>
+                </label>
+                <label>
+                    <input required="" placeholder="" type="text" class="input" name="phoneNumber" id="phoneNumber">
+                    <span>Contact Number</span>
+                </label>
+                <label>
+                    <input required="" placeholder="" type="text" class="input" name="email" id="email"
+                        autocomplete="email">
+                    <span>E-mail</span>
+                </label>
+                <label>
+                    <input required="" placeholder="" type="text" class="input" name="description" id="description">
+                    <span>Description</span>
+                </label>
+                <label>
+                    <input required="" placeholder="" type="number" min="1" max="8" class="input" name="tableNumber"
+                        id="tableNumber">
+                    <span>Table Number</span>
+                </label>
+                <button type="submit" class="submit">Submit</button>
+                <button type="button" class="cancel" onclick="cancelReservation()">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const createReservationButton = document.getElementById('createReservationButton');
+        const createReservationForm = document.getElementById('createReservationForm');
+
+        createReservationButton.addEventListener('click', () => {
+            createReservationForm.style.display = 'block';
+        });
+
+        function cancelReservation() {
+            createReservationForm.style.display = 'none';
+        }
+
+        async function submitForm(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Gather form data
+            const formData = new FormData(event.target);
+
+            // Convert FormData to a plain object
+            const formDataObject = {};
+            formData.forEach((value, key) => {
+                formDataObject[key] = value;
+            });
+
+            // Send a POST request with form data to your REST API
+            try {
+                const response = await fetch('http://localhost:8080/reservations/admin/add', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ ...formDataObject, status: true }),
+                });
+
+                if (response.ok) {
+                    alert('Reservation created successfully');
+                    document.querySelector('form').reset();
+                    fetchData();
+                } else {
+                    alert('Failed to create reservation');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to create reservation!');
+            }
+        }
+        // Function to make a GET request to your REST API
+        function fetchData() {
+            fetch('http://localhost:8080/reservations/admin/all', {
+                method: 'GET'
+                // You can add headers and other options if needed
+            })
+                .then(response => response.json())
+                .then(data => {
+                    const table = document.getElementById('data-table');
+
+                    data.forEach(item => {
+                        const row = table.insertRow(-1);
+
+                        // Add table cells and populate them with data
+                        const cell1 = row.insertCell(0);
+                        cell1.textContent = item.reservationId;
+
+                        const cell2 = row.insertCell(1);
+                        cell2.textContent = item.customerName;
+
+                        const cell3 = row.insertCell(2);
+                        cell3.textContent = item.date;
+
+                        const cell4 = row.insertCell(3);
+                        cell4.textContent = item.phoneNumber;
+
+                        const cell5 = row.insertCell(4);
+                        cell5.textContent = item.email;
+
+                        const cell6 = row.insertCell(5);
+                        cell6.textContent = item.description;
+
+                        const cell7 = row.insertCell(6);
+                        cell7.textContent = item.tableNumber;
+
+                        const cell8 = row.insertCell(7);
+                        cell8.textContent = item.status;
+
+                        // Add "Update" and "Delete" buttons to each row
+                        // const updateButton = document.createElement('button');
+                        // updateButton.textContent = 'Update';
+                        // updateButton.className = 'update-button'; // Apply the CSS class
+                        // updateButton.addEventListener('click', () => {
+                        //     // Handle the update action here using the REST API
+                        //     // You can open a form for editing and pre-fill it with the row's data
+                        // });
+
+                        // const deleteButton = document.createElement('button');
+                        // deleteButton.textContent = 'Delete';
+                        // deleteButton.className = 'delete-button'; // Apply the CSS class
+                        // deleteButton.addEventListener('click', () => {
+                        //     // Handle the delete action here using the REST API
+                        // });
+
+                        // const actionsCell = row.insertCell(8);
+                        // actionsCell.appendChild(updateButton);
+                        // actionsCell.appendChild(deleteButton);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        fetchData();
+    </script>
+</body>
+
+</html>

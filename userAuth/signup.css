@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f5e6ca; /* Light beige background color */
+}
+
+.container {
+    width: 300px;
+    background: #f0d8a8; /* Light tan background color */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1); /* Light shadow effect */
+    text-align: center;
+}
+
+.header {
+    color: #704214; /* Dark brown header color */
+    margin-bottom: 30px;
+    font-size: 30px;
+}
+
+.container input {
+    width: calc(100% - 20px);
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #a68165; /* Light brown border color */
+    border-radius: 5px;
+}
+
+.container button {
+    background-color: #a68165; /* Dark brown button color */
+    color: #f5e6ca; /* Light beige text color */
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Added box-shadow transition */
+    box-shadow: 0 8px 6px -6px #0000001a; /* Light shadow effect */
+}
+
+.container button:hover {
+    background-color: #875f42; /* Darker brown color on hover */
+    transform: scale(1.1); /* Button scale on hover */
+    box-shadow: 0 12px 8px -8px #00000033; /* Enhanced shadow effect on hover */
+}
+
+.container a {
+    text-decoration: none;
+    color: #704214; /* Dark brown color for links */
+}
+
+.container a:hover {
+    text-decoration: underline;
+}

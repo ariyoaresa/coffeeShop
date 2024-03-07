@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Café La Défense</title>
+
+    <!-- SWIPER -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+    <!-- Font Awesome CDN Link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+    <!-- Custom CSS File Link  -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/maphilight/1.4.0/jquery.maphilight.min.js"></script>
+</head>
+
+<body>
+    <!-- Add the following code to display the logout button if the user is logged in -->
+    <header class="header">
+        <div id="menu-btn" class="fas fa-bars"></div>
+        <a href="index.html" class="logo">Café La Défense<i class="fas fa-mug-hot"></i></a>
+        <nav class="navbar">
+            <a href="#home">home</a>
+            <a href="#about">about</a>
+            <a href="#menu">menu</a>
+            <a href="#review">review</a>
+            <a href="#book">book</a>
+        </nav>
+        <div id="auth-buttons">
+            <!-- Display these buttons based on user authentication status -->
+            <!-- Logout button -->
+            <button id="logout-button" class="btn" style="display: none">Logout</button>
+            <!-- Sign-in button -->
+            <a href="userAuth/signin.html" id="signin-button" class="btn">Sign-in</a>
+        </div>
+    </header>
+
+    <!-- Your other sections remain the same -->
+
+
+    <!-- HOME -->
+    <section class="home" id="home">
+        <div class="row">
+            <div class="content">
+                <h3>fresh coffee in the morning</h3>
+                <a href="#book" class="btn">Book a table now</a>
+            </div>
+
+            <div class="image">
+                <img src="image/home-img-1.png" class="main-home-image" alt="" />
+            </div>
+        </div>
+
+        <div class="image-slider">
+            <img src="image/home-img-1.png" alt="" />
+            <img src="image/home-img-2.png" alt="" />
+            <img src="image/home-img-3.png" alt="" />
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+        <h1 class="heading">about us <span>why choose us</span></h1>
+
+        <div class="row">
+            <div class="image">
+                <img src="image/about-img.png" alt="" />
+            </div>
+
+            <div class="content">
+                <h3 class="title">what's make our coffee special!</h3>
+                <p>
+                    What makes our coffee special is the meticulous attention we devote
+                    to every aspect of the coffee-making process. From the moment our
+                    premium coffee beans are sourced to the time a perfectly brewed cup
+                    is handed to you, we are dedicated to delivering a unique and
+                    exceptional coffee experience.
+                </p>
+                <a href="#" class="btn">read more</a>
+                <div class="icons-container">
+                    <div class="icons">
+                        <img src="image/about-icon-1.png" alt="" />
+                        <h3>quality coffee</h3>
+                    </div>
+                    <div class="icons">
+                        <img src="image/about-icon-2.png" alt="" />
+                        <h3>our branches</h3>
+                    </div>
+                    <div class="icons">
+                        <img src="image/about-icon-3.png" alt="" />
+                        <h3>free delivery</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENU -->
+    <section class="menu" id="menu">
+        <h1 class="heading">our menu <span>popular menu</span></h1>
+        <div class="box-container" id="product-container">
+            <!-- Menu items will be dynamically added here -->
+        </div>
+    </section>
+
+    <!-- REVIEW -->
+    <section class="review" id="review">
+        <h1 class="heading">reviews <span>what people says</span></h1>
+
+        <div class="swiper review-slider">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide box">
+                    <i class="fas fa-quote-left"></i>
+                    <i class="fas fa-quote-right"></i>
+                    <img src="image/pic-1.png" alt="" />
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo,
+                        earum quis dolorem quaerat tenetur illum.
+                    </p>
+                    <h3>john deo</h3>
+                    <span>satisfied client</span>
+                </div>
+
+                <div class="swiper-slide box">
+                    <i class="fas fa-quote-left"></i>
+                    <i class="fas fa-quote-right"></i>
+                    <img src="image/pic-2.png" alt="" />
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
+                        optio quasi ut, illo ipsam assumenda.
+                    </p>
+                    <h3>john deo</h3>
+                    <span>satisfied client</span>
+                </div>
+
+                <div class="swiper-slide box">
+                    <i class="fas fa-quote-left"></i>
+                    <i class="fas fa-quote-right"></i>
+                    <img src="image/pic-3.png" alt="" />
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius
+                        asperiores aliquam hic quis! Eligendi, aliquam.
+                    </p>
+                    <h3>john deo</h3>
+                    <span>satisfied client</span>
+                </div>
+
+                <div class="swiper-slide box">
+                    <i class="fas fa-quote-left"></i>
+                    <i class="fas fa-quote-right"></i>
+                    <img src="image/pic-4.png" alt="" />
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi
+                        modi perspiciatis distinctio velit aliquid a.
+                    </p>
+                    <h3>john deo</h3>
+                    <span>satisfied client</span>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
+    <!-- BOOK -->
+    <section class="book" id="book">
+        <h1 class="heading">Booking <span>Reserve a Table</span></h1>
+
+        <div class="booking-container">
+            <div class="booking-form">
+                <form onsubmit="submitForm(event)" autocomplete="on">
+                    <input type="text" placeholder="Name" class="box" name="customerName" id="customerName" />
+                    <input type="text" placeholder="Date (YYYY-MM-DD)" class="box" name="date" id="date" />
+                    <input type="text" placeholder="Contact Number" class="box" name="phoneNumber" id="phoneNumber" />
+                    <input type="email" placeholder="Email" class="box" name="email" id="email" />
+                    <textarea name="description" placeholder="Description" class="box" id="description" cols="30"
+                        rows="10"></textarea>
+                    <input type="number" placeholder="Table Number" min="1" max="8" class="box" name="tableNumber"
+                        id="tableNumber" />
+                    <input type="submit" value="Submit" class="btn" />
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <section class="footer">
+        <div class="box-container">
+            <div class="box">
+                <h3>our branches</h3>
+                <a href="#"><i class="fas fa-arrow-right"></i> india</a>
+                <a href="#"><i class="fas fa-arrow-right"></i> USA</a>
+                <a href="#"><i class="fas fa-arrow-right"></i> france</a>
+                <a href="#"><i class="fas fa-arrow-right"></i> africa</a>
+                <a href="#"><i class="fas fa-arrow-right"></i> japan</a>
+            </div>
+
+            <div class="box">
+                <h3>quick links</h3>
+                <a href="#home"><i class="fas fa-arrow-right"></i> home</a>
+                <a href="#about"><i class="fas fa-arrow-right"></i> about</a>
+                <a href="#menu"><i class="fas fa-arrow-right"></i> menu</a>
+                <a href="#review"><i class="fas fa-arrow-right"></i> review</a>
+                <a href="#book"><i class="fas fa-arrow-right"></i> book</a>
+            </div>
+
+            <div class="box">
+                <h3>contact info</h3>
+                <a href="#"><i class="fas fa-phone"></i> +123-456-7890</a>
+                <a href="#"><i class="fas fa-phone"></i> +111-222-3333</a>
+                <a href="#"><i class="fas fa-envelope"></i> coffee@gmail.com</a>
+                <a href="#"><i class="fas fa-envelope"></i> Perú, Lima</a>
+            </div>
+
+            <div class="box">
+                <h3>contact info</h3>
+                <a href="#"><i class="fab fa-facebook-f"></i> facebook</a>
+                <a href="#"><i class="fab fa-twitter"></i> twitter</a>
+                <a href="#"><i class="fab fa-instagram"></i> instagram</a>
+                <a href="#"><i class="fab fa-linkedin"></i> linkedin</a>
+                <a href="#"><i class="fab fa-twitter"></i> twitter</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SWIPER -->
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
+    <!-- Custom JS File Link  -->
+    <script src="js/script.js"></script>
+    <script>
+        async function submitForm(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Gather form data
+            const formData = new FormData(event.target);
+
+            // Convert FormData to a plain object
+            const formDataObject = {};
+            formData.forEach((value, key) => {
+                formDataObject[key] = value;
+            });
+
+            // Send a POST request with form data to your REST API
+            try {
+                const response = await fetch(
+                    "http://localhost:8080/reservations/customer/register",
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({ ...formDataObject, status: true }),
+                    }
+                );
+
+                if (response.ok) {
+                    alert("Reservation created successfully");
+                    document.querySelector("form").reset();
+                    fetchData();
+                } else {
+                    alert("Failed to create reservation");
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                alert("Failed to create reservation!");
+            }
+        }
+    </script>
+    <script>
+        fetch("http://localhost:8081/api/v1/products/getProducts")
+            .then((response) => response.json())
+            .then((data) => {
+                const productContainer = document.getElementById("product-container");
+
+                data.forEach((product) => {
+                    const box = document.createElement("a");
+                    box.className = "box";
+
+                    const img = document.createElement("img");
+                    img.src = `image/menu-${product.pid}.png`; // Assuming you have images named like "menu-1.png", "menu-2.png", etc.
+                    img.alt = product.name;
+
+                    const content = document.createElement("div");
+                    content.className = "content";
+
+                    const h3 = document.createElement("h3");
+                    h3.textContent = product.name;
+
+                    const p = document.createElement("p");
+                    p.textContent = product.discription;
+
+                    const span = document.createElement("span");
+                    span.textContent = `$${product.price}`;
+
+                    content.appendChild(h3);
+                    content.appendChild(p);
+                    content.appendChild(span);
+
+                    box.appendChild(img);
+                    box.appendChild(content);
+
+                    productContainer.appendChild(box);
+                });
+            })
+            .catch((error) => {
+                alert("Error:", error);
+            });
+    </script>
+</body>
+
+</html>

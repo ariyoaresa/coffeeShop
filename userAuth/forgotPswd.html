@@ -1,0 +1,116 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="forgotPswd.css">
+</head>
+
+<body>
+    <form class="forgot-password">
+        <div class="header">
+            <span class="title">Forgot Password</span>
+            <p class="sub-title">Please Select Option To Reset Password</p>
+        </div>
+        <div class="reset-option">
+            <input value="email" id="email" name="option" type="radio" checked="">
+            <label for="email">
+                <div class="reset-info">
+                    <span class="reset-title">Reset via Email</span>
+                    <span class="reset-sub-title">Reset link will be sent to your registered email address</span>
+                </div>
+            </label>
+        </div>
+        <div class="reset-option">
+            <input value="sms" id="sms" name="option" type="radio">
+            <label for="sms">
+                <div class="reset-info">
+                    <span class="reset-title">Reset via SMS</span>
+                    <span class="reset-sub-title">Reset link will be sent to your registered number</span>
+                </div>
+            </label>
+        </div>
+        <div class="sendLink">
+            <a href="#" title="" class="send-btn">Send Link</a>
+        </div>
+        <p class="sub-title">Didn't receive link? <span class="resend">Resend<span></span></span></p>
+    </form>
+    <script>
+        // how to pass a value through rest endpoint to the microservice using a html button
+
+        document.getElementById("signup-form").addEventListener("submit", function (e) {
+
+            e.preventDefault();
+
+            const firstname = document.querySelector('input[name="firstname"]').value;
+
+            const lastname = document.querySelector('input[name="lastname"]').value;
+
+            const email = document.querySelector('input[name="email"]').value;
+
+            const password = document.querySelector('input[name="password"]').value;
+
+            const confirmpassword = document.querySelector('input[name="confirmpassword"]').value;
+
+            const address = document.querySelector('input[name="address"]').value;
+
+            // Check if passwords match
+
+            if (password !== confirmpassword) {
+
+                alert("Passwords do not match");
+
+                return;
+            }
+
+            // Create a JSON payload with the user's information
+
+            const userData = {
+
+                firstname: firstname,
+                lastname: lastname,
+                email: email,
+                password: password,
+                address: address,
+            };
+
+            // Send a POST request to the User Management microservice's signup endpoint
+
+            fetch("https://your-user-management-api.com/signup", {
+
+                method: "POST",
+
+                headers: {
+
+                    "Content-Type": "application/json",
+
+                },
+
+                body: JSON.stringify(userData),
+
+            })
+            
+            .then((response) => response.json())
+
+                .then((data) => {
+
+                    // Handle the response from the microservice, e.g., show a success message or redirect to a new page.
+
+                    console.log("Signup successful:", data);
+
+                    // You can redirect the user to their profile page or perform other actions here.
+
+                })
+
+                .catch((error) => {
+
+                    // Handle errors, e.g., show an error message to the user.
+
+                    console.error("Signup failed:", error);
+
+            });
+        });
+    </script>
+</body>
+
+</html>

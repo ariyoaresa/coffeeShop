@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="signup.css">
+    <title>Coffee Page Sign Up</title>
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="header">Sign Up</h2>
+        <a class="header" href="/index.html">Café La Défense</a>
+        <form id="signup-form">
+            <input type="text" placeholder="First Name" name="firstName" required>
+            <input type="text" placeholder="Last Name" name="lastName" required>
+            <input type="email" placeholder="Email" name="email" required>
+            <input type="password" placeholder="Password" name="password" required>
+            <input type="password" placeholder="Confirm Password" name="confirmpassword" required>
+            <input type="text" placeholder="Address" name="address" required>
+            <input type="number" placeholder="Telephone" name="telephone" required>
+            <button type="submit">Sign Up</button>
+            <p>Already have an account? <a href="signin.html">Sign in here</a></p>
+        </form>
+
+    </div>
+
+    <script>
+        document.getElementById("signup-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const firstName = document.querySelector('input[name="firstName"]').value;
+            const lastName = document.querySelector('input[name="lastName"]').value;
+            const email = document.querySelector('input[name="email"]').value;
+            const password = document.querySelector('input[name="password"]').value;
+            const confirmPassword = document.querySelector('input[name="confirmpassword"]').value;
+            const address = document.querySelector('input[name="address"]').value;
+            const telephone = document.querySelector('input[name="telephone"]').value;
+
+            // Check if passwords match
+            if (password !== confirmPassword) {
+                alert("Passwords do not match");
+                return;
+            }
+
+            // Create a JSON payload with the user's information
+            const userData = {
+                email: email,
+                password: password,
+                firstName: firstName,
+                lastName: lastName,
+                address: address,
+                telephone: telephone
+            };
+
+            // Send a POST request to the correct endpoint for user registration
+            fetch("http://localhost:8082/api/v1/users/saveCustomers", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(userData),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    // Handle the response from the microservice, e.g., show a success message or redirect to a new page.
+                    alert("Signup successful:", data);
+                    // You can redirect the user to a success page or perform other actions here.
+                })
+                .catch((error) => {
+                    // Handle errors, e.g., show an error message to the user.
+                    alert("Signup failed:", error);
+                });
+        });
+    </script>
+
+</body>
+
+</html>
